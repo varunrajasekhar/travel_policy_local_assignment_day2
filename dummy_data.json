@@ -1,0 +1,233 @@
+{
+  "dataset_name": "travel_policy_local_dummy-data",
+  "purpose": "Reusable local prompts and expected grounded answers for manual or automated RAG-agent testing.",
+  "cases": [
+    {
+      "id": "airfare_domestic_class",
+      "question": "Can I book business class for a domestic flight?",
+      "expected_topics": [
+        "airfare"
+      ],
+      "expected_sources": [
+        "airfare.md"
+      ],
+      "must_include": [
+        "Economy class is required for domestic travel",
+        "Business class is only allowed for qualifying international travel with VP approval"
+      ],
+      "expected_answer": "No. The policy requires economy class for domestic travel. Business class is reserved for international flight segments of 10 hours or more and requires Vice President approval. Source: airfare.md."
+    },
+    {
+      "id": "airfare_premium_economy",
+      "question": "My international flight segment is 9 hours. Can I book premium economy?",
+      "expected_topics": [
+        "airfare"
+      ],
+      "expected_sources": [
+        "airfare.md"
+      ],
+      "must_include": [
+        "Premium economy is permitted",
+        "8 hours or more"
+      ],
+      "expected_answer": "Yes. Premium economy is permitted for an international flight segment of 8 hours or more, so a 9-hour international segment qualifies. Source: airfare.md."
+    },
+    {
+      "id": "airfare_business_class",
+      "question": "My international flight is 11 hours. Can I book business class?",
+      "expected_topics": [
+        "airfare",
+        "exceptions"
+      ],
+      "expected_sources": [
+        "airfare.md",
+        "exceptions.md"
+      ],
+      "must_include": [
+        "10 hours or more",
+        "Vice President approval"
+      ],
+      "expected_answer": "Potentially yes. Business class is allowed only for an international flight segment of 10 hours or more and requires Vice President approval. An 11-hour segment meets the duration rule, but the approval is still required. Sources: airfare.md, exceptions.md."
+    },
+    {
+      "id": "airfare_personal_change_fee",
+      "question": "Will the company reimburse an airline change fee because I changed my flight for personal convenience?",
+      "expected_topics": [
+        "airfare"
+      ],
+      "expected_sources": [
+        "airfare.md"
+      ],
+      "must_include": [
+        "not reimbursable"
+      ],
+      "expected_answer": "No. Change fees caused by personal preference are not reimbursable. Source: airfare.md."
+    },
+    {
+      "id": "lodging_standard_cap",
+      "question": "What is the normal hotel nightly limit?",
+      "expected_topics": [
+        "lodging"
+      ],
+      "expected_sources": [
+        "lodging.md"
+      ],
+      "must_include": [
+        "$220",
+        "before taxes"
+      ],
+      "expected_answer": "The standard nightly lodging cap is $220 before taxes. Source: lodging.md."
+    },
+    {
+      "id": "lodging_high_cost_city",
+      "question": "What is the hotel cap in New York City?",
+      "expected_topics": [
+        "lodging"
+      ],
+      "expected_sources": [
+        "lodging.md"
+      ],
+      "must_include": [
+        "$325",
+        "before taxes",
+        "New York City"
+      ],
+      "expected_answer": "New York City is a designated high-cost city, so the nightly lodging cap is $325 before taxes. Source: lodging.md."
+    },
+    {
+      "id": "lodging_over_cap",
+      "question": "All hotels in Boston are above $325. What should I do?",
+      "expected_topics": [
+        "lodging",
+        "exceptions"
+      ],
+      "expected_sources": [
+        "lodging.md",
+        "exceptions.md"
+      ],
+      "must_include": [
+        "document the business reason",
+        "manager approval",
+        "before booking above the cap"
+      ],
+      "expected_answer": "If no compliant hotel is reasonably available, document the business reason and obtain manager approval before booking above the cap. Boston is a designated high-cost city with a $325 nightly cap before taxes. Sources: lodging.md, exceptions.md."
+    },
+    {
+      "id": "meals_daily_limit",
+      "question": "How much can I spend on meals in one day?",
+      "expected_topics": [
+        "meals"
+      ],
+      "expected_sources": [
+        "meals.md"
+      ],
+      "must_include": [
+        "$105"
+      ],
+      "expected_answer": "The total daily meal reimbursement may not exceed $105. The individual limits are $20 for breakfast, $30 for lunch, and $55 for dinner. Source: meals.md."
+    },
+    {
+      "id": "meals_free_conference_meal",
+      "question": "The conference provides lunch for free. Can I still claim $30 for lunch?",
+      "expected_topics": [
+        "meals"
+      ],
+      "expected_sources": [
+        "meals.md"
+      ],
+      "must_include": [
+        "should not claim",
+        "meal provided at no additional cost"
+      ],
+      "expected_answer": "No. If a conference or hotel provides a meal at no additional cost, you should not claim the equivalent meal reimbursement for that meal. Source: meals.md."
+    },
+    {
+      "id": "meals_alcohol",
+      "question": "Can I include a glass of wine with dinner in my reimbursable meal expense?",
+      "expected_topics": [
+        "meals"
+      ],
+      "expected_sources": [
+        "meals.md"
+      ],
+      "must_include": [
+        "Alcohol is not reimbursable"
+      ],
+      "expected_answer": "No. Alcohol is not reimbursable under the meals policy. Source: meals.md."
+    },
+    {
+      "id": "ground_transport_rideshare",
+      "question": "Can I take an Uber from the airport if public transit would add an hour to my trip?",
+      "expected_topics": [
+        "ground_transport"
+      ],
+      "expected_sources": [
+        "ground_transport.md"
+      ],
+      "must_include": [
+        "rideshare",
+        "materially increase travel time"
+      ],
+      "expected_answer": "Yes, based on the policy. Rideshare or taxi is reimbursable when public transportation is impractical, unavailable, or would materially increase travel time. Source: ground_transport.md."
+    },
+    {
+      "id": "ground_transport_rental_car",
+      "question": "Can I rent a car if I need to visit three client work sites in one day?",
+      "expected_topics": [
+        "ground_transport"
+      ],
+      "expected_sources": [
+        "ground_transport.md"
+      ],
+      "must_include": [
+        "multiple work sites",
+        "business need"
+      ],
+      "expected_answer": "Yes. Multiple work sites are specifically listed as a business need that can justify a rental car. Source: ground_transport.md."
+    },
+    {
+      "id": "ground_transport_luxury_upgrade",
+      "question": "Can I upgrade my rental car to a luxury SUV and get reimbursed?",
+      "expected_topics": [
+        "ground_transport"
+      ],
+      "expected_sources": [
+        "ground_transport.md"
+      ],
+      "must_include": [
+        "Luxury vehicle upgrades are not reimbursable"
+      ],
+      "expected_answer": "No. Luxury vehicle upgrades are not reimbursable. Source: ground_transport.md."
+    },
+    {
+      "id": "exceptions_manager_scope",
+      "question": "Can my manager approve an exception to the meal policy?",
+      "expected_topics": [
+        "exceptions"
+      ],
+      "expected_sources": [
+        "exceptions.md"
+      ],
+      "must_include": [
+        "manager may approve documented exceptions",
+        "meals"
+      ],
+      "expected_answer": "Yes. A manager may approve documented exceptions for lodging, meals, or ground transportation. Source: exceptions.md."
+    },
+    {
+      "id": "unknown_policy",
+      "question": "Does the company reimburse airport lounge memberships?",
+      "expected_topics": [
+        "exceptions"
+      ],
+      "expected_sources": [
+        "exceptions.md"
+      ],
+      "must_include": [
+        "knowledge base does not contain enough information",
+        "contact Corporate Travel"
+      ],
+      "expected_answer": "The knowledge base does not contain enough information to determine whether airport lounge memberships are reimbursable. The policy says to contact Corporate Travel rather than assume approval when the policy does not contain enough information. Source: exceptions.md."
+    }
+  ]
+}
